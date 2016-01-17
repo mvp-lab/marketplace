@@ -1825,6 +1825,7 @@ zh:
       visible_only_to_you: 仅对你和集市管理员可见
       visible_to_everybody: 所有人可见
       create_account_with_facebook: 用Facebook帐号注册
+      create_account_with_wechat: 用微信帐号注册
       OR: 或
       signup_with_email: 使用你自己的邮箱注册
     not_member:

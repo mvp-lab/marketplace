@@ -1837,6 +1837,7 @@ en:
       visible_only_to_you: "visible only to you and the marketplace admin"
       visible_to_everybody: "visible to everybody"
       create_account_with_facebook: "Sign up with Facebook"
+      create_account_with_wechat: "Sign up with WeChat"
       OR: OR
       signup_with_email: "Sign up with email"
     not_member:

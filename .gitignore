@@ -3,7 +3,7 @@ db/*.sqlite3
 db/sphinx
 config/*.sphinx.conf
 #config/database.yml
-config/config.yml
+#config/config.yml
 config/session_secret
 config/gmaps_api_key.yml
 config/translation.yml
@@ -43,3 +43,12 @@ coverage/
 .idea/
 *.sock
 .vagrant
+
+## Node.js
+lib-cov
+pids
+logs
+results
+npm-debug.log
+node_modules
+bower_components
