@@ -19,7 +19,6 @@
   - unless !facebook_connect_in_use? || params[:no_fb]
     = render :partial => "layouts/facebook_connect_button", :locals => { :button_text => t(".create_account_with_facebook") }
 
-		/ Comment
     .signup-horizontal-line
       .signup-horizontal-line-text=t(".OR")
 
