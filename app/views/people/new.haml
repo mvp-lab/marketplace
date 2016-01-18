@@ -19,13 +19,12 @@
   - unless !facebook_connect_in_use? || params[:no_fb]
     = render :partial => "layouts/facebook_connect_button", :locals => { :button_text => t(".create_account_with_facebook") }
 
-  = render :partial => "layouts/wechat_connect_button", :locals => { :button_text =>
-  t(".create_account_with_wechat") }
+  = render :partial => "layouts/wechat_connect_button", :locals => { :button_text => t(".create_account_with_wechat") }
 
-    .signup-horizontal-line
-      .signup-horizontal-line-text=t(".OR")
+  .signup-horizontal-line
+    .signup-horizontal-line-text=t(".OR")
 
-    %h3=t(".signup_with_email")
+  %h3=t(".signup_with_email")
 
 
   = form_for @person, :url => APP_CONFIG.login_domain.to_s + people_path do |form|
