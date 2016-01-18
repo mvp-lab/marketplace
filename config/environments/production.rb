@@ -3,6 +3,7 @@ require_relative './common.rb'
 Kassi::Application.configure do
   # Settings specified here will take precedence over those in config/environment.rb
 
+  config.eager_load = false
   # The production environment is meant for finished, "live" apps.
   # Code is not reloaded between requests
   # If live updates for translations are in use, caching is set to false.

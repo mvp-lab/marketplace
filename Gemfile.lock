@@ -308,6 +308,12 @@ GEM
     omniauth-oauth2 (1.3.1)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
+    omniauth-open_wechat (0.0.4)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (>= 1.1.1, < 2.0)
+    omniauth-wechat-oauth2 (0.1.0)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.0)
     orm_adapter (0.5.0)
     paperclip (3.5.1)
       activemodel (>= 3.0.0)
@@ -483,6 +489,11 @@ GEM
       multipart-post (~> 1.2.0)
       trollop (~> 2.0)
     websocket (1.0.7)
+    wechat (0.6.10)
+      activesupport (>= 3.2, < 5.1.x)
+      nokogiri (>= 1.6.0)
+      rest-client
+      thor
     will_paginate (3.0.7)
     xml-simple (1.1.4)
     xpath (2.0.0)
@@ -544,6 +555,8 @@ DEPENDENCIES
   mysql2
   newrelic_rpm (~> 3.9.1.236)
   omniauth-facebook (~> 2.0.1)
+  omniauth-open_wechat
+  omniauth-wechat-oauth2
   paperclip (~> 3.5.1)
   parallel_tests
   passenger (~> 5.0.18)
@@ -584,9 +597,10 @@ DEPENDENCIES
   ts-delayed-delta (~> 2.0.2)!
   uglifier
   web_translate_it
+  wechat
   will_paginate (~> 3.0.5)
   xpath
   zeus (= 0.15.1)
 
 BUNDLED WITH
-   1.10.6
+   1.11.2

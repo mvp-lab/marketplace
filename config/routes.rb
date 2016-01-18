@@ -1,5 +1,6 @@
 Kassi::Application.routes.draw do
 
+  resource :wechat, only: [:show, :create]
   namespace :mercury do
     resources :images
   end

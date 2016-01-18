@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-ruby '2.1.2'
+ruby '2.1.7'
 
 gem 'rails', '4.0.13'
 
@@ -62,6 +62,9 @@ gem 'rails-i18n'
 gem 'devise', "~>3.0.0"
 gem "devise-encryptable"
 gem "omniauth-facebook", "~> 2.0.1"
+gem "omniauth-wechat-oauth2"
+gem 'omniauth-open_wechat'
+gem "wechat"
 gem 'spreadsheet'
 gem 'rabl', '~> 0.7.10'
 gem 'rake'
