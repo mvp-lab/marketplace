@@ -540,6 +540,25 @@ class Person < ActiveRecord::Base
       nil
     end
   end
+	
+	def self.find_for_wechat_oauth(wechat_data, logged_in_user=nil)
+		user_data = wechat_data.extra.raw_info		
+		
+		# find if already made wechat connection
+    if user = self.find_by_wechat_id(user_data.openid)
+      user
+    elsif user = logged_in_user || self.find_by_email(user_data.openid + "@wechat.local")
+      # make connection automatically based on email
+			-#TODO: add wechat_id to database
+      -#user.update_attribute(:wechat_id, user_data.openid)
+      if user.image_file_size.nil?
+        -#TODO: update wechat image to database
+      end
+      user
+    else
+      nil
+    end
+	end
 
   # Override the default finder to find also based on additional emails
   def self.find_by_email(*args)

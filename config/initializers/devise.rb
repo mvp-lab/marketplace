@@ -211,4 +211,9 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
+	
+	# wechat configuration
+	require "omniauth-wechat-oauth2"
+	config.omniauth :wechat, APP_CONFIG.wechat_appid, APP_CONFIG.wechat_secret,
+    :authorize_params => {:scope => "snsapi_base"}
 end

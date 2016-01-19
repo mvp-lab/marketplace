@@ -279,7 +279,8 @@ Kassi::Application.routes.draw do
 
       # List few specific routes here for Devise to understand those
       get "/signup" => "people#new", :as => :sign_up
-      get '/people/auth/:provider/setup' => 'sessions#facebook_setup' #needed for devise setup phase hook to work
+      -#get '/people/auth/:provider/setup' => 'sessions#facebook_setup' #needed for devise setup phase hook to work
+      get '/people/auth/:provider/callback' => 'sessions#wechat_callback'
 
       resources :people, :path => "", :only => :show, :constraints => { :id => /[_a-z0-9]+/ }
 

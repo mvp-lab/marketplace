@@ -17,6 +17,12 @@ class SessionsController < ApplicationController
       @facebook_email = session["devise.facebook_data"]["email"]
       @facebook_name = "#{session["devise.facebook_data"]["given_name"]} #{session["devise.facebook_data"]["family_name"]}"
     end
+
+    @wechat_merge = session["devise.wechat_data"].present?
+    if @wechat_merge
+      @wechat_id = session["devise.wechat_data"]["openid"]
+			@wechat_email = session["devise.wechat_data"]["email"]
+    end
   end
 
   def create
@@ -43,6 +49,11 @@ class SessionsController < ApplicationController
       if @current_user.image_file_size.nil?
         @current_user.store_picture_from_facebook
       end
+    end
+		
+    if session["devise.wechat_data"]
+      @current_user.update_attribute(:wechat_id, session["devise.wechat_data"]["openid"])
+			-#TODO: add wechat image
     end
 
     sign_in @current_user
@@ -145,7 +156,7 @@ class SessionsController < ApplicationController
 
     render :text => "Setup complete.", :status => 404 #This notifies the ominauth to continue
   end
-
+	
   # Callback from Omniauth failures
   def failure
     I18n.locale = URLUtils.extract_locale_from_url(request.env['omniauth.origin']) if request.env['omniauth.origin']
@@ -161,5 +172,25 @@ class SessionsController < ApplicationController
       redirect_to root
     end
   end
+	
+
+  def wechat_callback
+    @person = Person.find_for_wechat_oauth(request.env["omniauth.auth"], @current_user)
+    I18n.locale = URLUtils.extract_locale_from_url(request.env['omniauth.origin']) if request.env['omniauth.origin']
+
+    self.current_user = @person
+    data = request.env["omniauth.auth"].extra.raw_info
+		
+    wechat_data = {"wechat_id" => data.openid,
+                    "email" => data.openid + "@wechat.local",
+                    "given_name" => data.nickname,
+                    "description" => data.country + "," + data.province + "," + data.city}
+
+    session["devise.wechat_data"] = wechat_data
+    -#TODO: Login with wechat info, for now just redirect to see if this works
+		-#redirect_to :action => :create_facebook_based, :controller => :people
+    redirect_to '/'
+  end
+	
 
 end
