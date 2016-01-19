@@ -53,7 +53,7 @@ class SessionsController < ApplicationController
 		
     if session["devise.wechat_data"]
       @current_user.update_attribute(:wechat_id, session["devise.wechat_data"]["openid"])
-			-#TODO: add wechat image
+			#TODO: add wechat image
     end
 
     sign_in @current_user
@@ -187,8 +187,8 @@ class SessionsController < ApplicationController
                     "description" => data.country + "," + data.province + "," + data.city}
 
     session["devise.wechat_data"] = wechat_data
-    -#TODO: Login with wechat info, for now just redirect to see if this works
-		-#redirect_to :action => :create_facebook_based, :controller => :people
+    #TODO: Login with wechat info, for now just redirect to see if this works
+		#redirect_to :action => :create_facebook_based, :controller => :people
     redirect_to '/'
   end
 	

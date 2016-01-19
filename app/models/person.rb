@@ -549,10 +549,10 @@ class Person < ActiveRecord::Base
       user
     elsif user = logged_in_user || self.find_by_email(user_data.openid + "@wechat.local")
       # make connection automatically based on email
-			-#TODO: add wechat_id to database
-      -#user.update_attribute(:wechat_id, user_data.openid)
+			#TODO: add wechat_id to database
+      #user.update_attribute(:wechat_id, user_data.openid)
       if user.image_file_size.nil?
-        -#TODO: update wechat image to database
+        #TODO: update wechat image to database
       end
       user
     else
