@@ -169,14 +169,14 @@ class Community < ActiveRecord::Base
                       :apple_touch => "152x152#",
                       :original => "600x600>"
                     },
-                    :convert_options => {
+                    #:convert_options => {
                       # iOS makes logo background black if there's an alpha channel
                       # And the options has to be in correct order! First background, then flatten. Otherwise it will
                       # not work.
-                      :apple_touch => "-background white -flatten"
-                    },
+                      # :apple_touch => "-background white -flatten"
+                    #},
                     :default_url => DEFAULT_LOGO
-
+                    :keep_old_files => true # Temporarily to make preprod work aside production
   validates_attachment_content_type :logo,
                                     :content_type => ["image/jpeg",
                                                       "image/png",
@@ -192,11 +192,12 @@ class Community < ActiveRecord::Base
                       :header_highres => "336x80#",
                       :original => "600x600>"
                     },
-                    :convert_options => {
+                    #:convert_options => {
                       # The size for paypal logo will be exactly 190x60. No cropping, instead the canvas is extended with white background
-                      :paypal => "-background white -gravity center -extent 190x60"
-                    },
+                      #:paypal => "-background white -gravity center -extent 190x60"
+                    #},
                     :default_url => DEFAULT_WIDE_LOGO
+                    :keep_old_files => true # Temporarily to make preprod work aside production
 
   validates_attachment_content_type :wide_logo,
                                     :content_type => ["image/jpeg",
