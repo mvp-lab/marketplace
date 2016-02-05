@@ -175,7 +175,7 @@ class Community < ActiveRecord::Base
                       # not work.
                       # :apple_touch => "-background white -flatten"
                     #},
-                    :default_url => DEFAULT_LOGO
+                    :default_url => DEFAULT_LOGO,
                     :keep_old_files => true # Temporarily to make preprod work aside production
   validates_attachment_content_type :logo,
                                     :content_type => ["image/jpeg",
@@ -196,7 +196,7 @@ class Community < ActiveRecord::Base
                       # The size for paypal logo will be exactly 190x60. No cropping, instead the canvas is extended with white background
                       #:paypal => "-background white -gravity center -extent 190x60"
                     #},
-                    :default_url => DEFAULT_WIDE_LOGO
+                    :default_url => DEFAULT_WIDE_LOGO,
                     :keep_old_files => true # Temporarily to make preprod work aside production
 
   validates_attachment_content_type :wide_logo,
