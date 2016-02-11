@@ -2184,3 +2184,8 @@ en:
         other: "Displaying <b>all&nbsp;%{count}</b> %{model}"
       multi_page: "Displaying %{model} %{from} - %{to} of %{count} in total"
       multi_page_html: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{count}</b> in total"
+  custom:
+    address_title: "Address"
+    address: "Unit 132, 2255 LuoShan Road, New PuDong, Shanghai, 210000"
+    phone_title: "Phone"
+    phone: ""

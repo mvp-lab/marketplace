@@ -2160,3 +2160,8 @@ zh:
         other: "显示 <b>所有&nbsp;%{count}个</b> %{model}"
       multi_page: "显示 %{model} %{from} - %{to} 总共 %{count} 个"
       multi_page_html: "显示 %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> 总共 <b>%{count}</b> 个"
+  custom:
+    address_title: "地址"
+    address: "上海市浦东新区罗山路 2255号 132#, 210000"
+    phone_title: "电话"
+    phone: ""
