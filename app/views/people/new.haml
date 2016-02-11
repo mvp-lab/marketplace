@@ -4,7 +4,7 @@
 - content_for :title_header do
   %h1= t('.sign_up')
 
-.signup-form.centered-section
+.signup-form.centered-section.test
 
   - if @community_customization && @community_customization.signup_info_content
     %p
@@ -16,15 +16,22 @@
             :allowed_emails => @current_community.allowed_emails,
             :count => (@current_community.allowed_emails.split(",").count))
 
+  -#= render :partial => "layouts/wechat_connect_button", :locals => { :button_text => t(".create_account_with_wechat") }
+    
   - unless !facebook_connect_in_use? || params[:no_fb]
     = render :partial => "layouts/facebook_connect_button", :locals => { :button_text => t(".create_account_with_facebook") }
 
-  = render :partial => "layouts/wechat_connect_button", :locals => { :button_text => t(".create_account_with_wechat") }
+    .signup-horizontal-line
+      .signup-horizontal-line-text=t(".OR")
 
-  .signup-horizontal-line
-    .signup-horizontal-line-text=t(".OR")
+    %h3=t(".signup_with_email")
 
-  %h3=t(".signup_with_email")
+  -#%div
+    = "FB"
+    = facebook_connect_in_use?
+  -#%div
+    = "appconfig:::"
+    = APP_CONFIG.wechat_appid + "||" + APP_CONFIG.fb_connect_id
 
 
   = form_for @person, :url => APP_CONFIG.login_domain.to_s + people_path do |form|

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151231083524) do
+ActiveRecord::Schema.define(version: 20160118132929) do
 
   create_table "auth_tokens", force: true do |t|
     t.string   "token"
@@ -877,6 +877,7 @@ ActiveRecord::Schema.define(version: 20151231083524) do
     t.boolean  "is_organization"
     t.string   "organization_name"
     t.boolean  "deleted",                                       default: false
+    t.string   "wechat_id"
   end
 
   add_index "people", ["authentication_token"], name: "index_people_on_authentication_token", using: :btree
@@ -885,6 +886,7 @@ ActiveRecord::Schema.define(version: 20151231083524) do
   add_index "people", ["id"], name: "index_people_on_id", using: :btree
   add_index "people", ["reset_password_token"], name: "index_people_on_reset_password_token", unique: true, using: :btree
   add_index "people", ["username"], name: "index_people_on_username", unique: true, using: :btree
+  add_index "people", ["wechat_id"], name: "index_people_on_wechat_id", unique: true, using: :btree
 
   create_table "prospect_emails", force: true do |t|
     t.string   "email"

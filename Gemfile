@@ -64,6 +64,7 @@ gem "devise-encryptable"
 gem "omniauth-facebook", "~> 2.0.1"
 gem "omniauth-wechat-oauth2"
 gem 'omniauth-open_wechat'
+# gem 'debugger'
 gem "wechat"
 gem 'spreadsheet'
 gem 'rabl', '~> 0.7.10'
