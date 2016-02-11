@@ -4,9 +4,9 @@ development:
     adapter: mysql2
     database: sharetribe_development
     encoding: utf8
-    username: sharetribe
-    password: secret
-    host: localhost
+    username: marketplace
+    password: put_a_password_here
+    host: 172.31.21.52
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -35,6 +35,8 @@ production:
     username: marketplace
     password: put_a_password_here
     host: 172.31.21.52
+    pool: 20
+#    checkout_timeout: 3
 #    socket: /var/run/mysqld/mysqld.sock
 
 cucumber:
