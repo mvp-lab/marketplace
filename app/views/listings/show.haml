@@ -31,90 +31,6 @@
     .fade
 
 .row
-  .col-8
-    .row
-      .col-12
-        - with_image_frame(@listing) do |reason, listing_images|
-          - if reason == :images_ok
-            .listing-image-carousel
-              #listing-image-frame
-
-              - if @prev_image_id && @next_image_id
-                = link_to params.merge(image: @prev_image_id), class: "listing-image-navi listing-image-navi-left", id: "listing-image-navi-left" do
-                  .listing-image-navi-arrow-container
-                    .listing-image-arrow-icon-container.left
-                      = icon_tag("directleft", ["navigate-icon-fix", "listing-image-navi-arrow"])
-                = link_to params.merge(image: @next_image_id), class: "listing-image-navi listing-image-navi-right", id: "listing-image-navi-right" do
-                  .listing-image-navi-arrow-container
-                    .listing-image-arrow-icon-container.right
-                      = icon_tag("directright", ["navigate-icon-fix", "listing-image-navi-arrow"])
-            #thumbnail-stripe.listing-image-thumbnail-stripe
-
-            - content_for :extra_javascript do
-              :javascript
-                var listingImages = #{listing_images.map { |image| ListingImageJSAdapter.new(image) }.to_json }
-                var currentImage = #{params[:image].present? ? params[:image].to_i : listing_images.first.id};
-                ST.listingImages(listingImages, currentImage);
-          - else
-            .listing-image-text-container
-              .listing-image-frame
-                .listing-image-frame-content
-                  .listing-image-vertical-centering
-                    .listing-no-image
-                      - if reason == :images_processing
-                        = t("listings.show.processing_uploaded_image")
-                      - else
-                        = t(".no_description")
-
-    .row
-      .col-12
-        - if @listing.description && !@listing.description.blank?
-          - text_with_line_breaks do
-            = @listing.description
-
-    - @listing.custom_field_values.each do |custom_field_value|
-      .row
-        .col-12
-          - custom_field_value.with_type do |question_type|
-            = render :partial => "listings/custom_field_partials/#{question_type}", :locals => { :custom_field_value => custom_field_value }
-
-    - if @current_community.show_listing_publishing_date?
-      .row
-        .col-12
-          .icon-with-text-container
-            = icon_tag("calendar", ["icon-part"])
-            .text-part
-              %b
-                = t(".listing_created_at")
-                = l @listing.created_at, :format => :short_date
-
-    - if !@current_community.private?
-      .row
-        .col-12
-          .listing-social
-            .listing-fb-like-button
-              = facebook_like(current_user?(@listing.author))
-            .listing-tweet-button
-              = link_to("", "https://twitter.com/share", :class => "twitter-share-button", "data" => {count: "horizontal", via: (@current_community.twitter_handle || "Sharetribe"), text: @listing.title })
-              - content_for :extra_javascript do
-                :javascript
-                  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-
-    - unless (@listing.closed? && !current_user?(@listing.author)) || !@current_community.listing_comments_in_use
-      .view-item
-        #comments.discussion.overflow-allowed
-          %h2
-            = icon_tag("chat_bubble", ["icon-with_text"])
-            .text-with-icon
-              = t(".comments")
-              %span#comment_count= "(#{@listing.comments_count})"
-          #follow-links.follow-links
-            = render :partial => "follow_links"
-          #comment-list
-            = render :partial => "comment", :collection => @listing.comments
-          #comment-form
-            = render :partial => "comment_form"
-
   %aside.col-4
     - if @listing.price
       .row
@@ -166,3 +82,87 @@
           #googlemap
             = render :partial => "googlemap", :locals => { :listing => @listing}
             = render :partial => "origin", :locals => { :origin_loc => @listing.origin_loc }
+
+  .col-8
+    .row
+      .col-12
+        - with_image_frame(@listing) do |reason, listing_images|
+          - if reason == :images_ok
+            .listing-image-carousel
+              #listing-image-frame
+
+              - if @prev_image_id && @next_image_id
+                = link_to params.merge(image: @prev_image_id), class: "listing-image-navi listing-image-navi-left", id: "listing-image-navi-left" do
+                  .listing-image-navi-arrow-container
+                    .listing-image-arrow-icon-container.left
+                      = icon_tag("directleft", ["navigate-icon-fix", "listing-image-navi-arrow"])
+                = link_to params.merge(image: @next_image_id), class: "listing-image-navi listing-image-navi-right", id: "listing-image-navi-right" do
+                  .listing-image-navi-arrow-container
+                    .listing-image-arrow-icon-container.right
+                      = icon_tag("directright", ["navigate-icon-fix", "listing-image-navi-arrow"])
+            #thumbnail-stripe.listing-image-thumbnail-stripe
+
+            - content_for :extra_javascript do
+              :javascript
+                var listingImages = #{listing_images.map { |image| ListingImageJSAdapter.new(image) }.to_json }
+                var currentImage = #{params[:image].present? ? params[:image].to_i : listing_images.first.id};
+                ST.listingImages(listingImages, currentImage);
+          - else
+            .listing-image-text-container
+              .listing-image-frame
+                .listing-image-frame-content
+                  .listing-image-vertical-centering
+                    .listing-no-image
+                      - if reason == :images_processing
+                        = t("listings.show.processing_uploaded_image")
+                      - else
+                        = t(".no_description")
+
+    - @listing.custom_field_values.each do |custom_field_value|
+      .row
+        .col-12
+          - custom_field_value.with_type do |question_type|
+            = render :partial => "listings/custom_field_partials/#{question_type}", :locals => { :custom_field_value => custom_field_value }
+
+    .row
+      .col-12
+        - if @listing.description && !@listing.description.blank?
+          - text_with_line_breaks do
+            = @listing.description
+
+    - if @current_community.show_listing_publishing_date?
+      .row
+        .col-12
+          .icon-with-text-container
+            = icon_tag("calendar", ["icon-part"])
+            .text-part
+              %b
+                = t(".listing_created_at")
+                = l @listing.created_at, :format => :short_date
+
+    - if !@current_community.private?
+      .row
+        .col-12
+          .listing-social
+            .listing-fb-like-button
+              = facebook_like(current_user?(@listing.author))
+            .listing-tweet-button
+              = link_to("", "https://twitter.com/share", :class => "twitter-share-button", "data" => {count: "horizontal", via: (@current_community.twitter_handle || "Sharetribe"), text: @listing.title })
+              - content_for :extra_javascript do
+                :javascript
+                  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+
+    - unless (@listing.closed? && !current_user?(@listing.author)) || !@current_community.listing_comments_in_use
+      .view-item
+        #comments.discussion.overflow-allowed
+          %h2
+            = icon_tag("chat_bubble", ["icon-with_text"])
+            .text-with-icon
+              = t(".comments")
+              %span#comment_count= "(#{@listing.comments_count})"
+          #follow-links.follow-links
+            = render :partial => "follow_links"
+          #comment-list
+            = render :partial => "comment", :collection => @listing.comments
+          #comment-form
+            = render :partial => "comment_form"
