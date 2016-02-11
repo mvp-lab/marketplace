@@ -127,6 +127,7 @@
     .row
       .col-12
         - if @listing.description && !@listing.description.blank?
+           %b= "#{t('listings.form.description.detailed_description')}:"
           - text_with_line_breaks do
             = @listing.description
 

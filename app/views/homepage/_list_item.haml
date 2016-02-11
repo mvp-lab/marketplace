@@ -34,17 +34,15 @@
               = shape_name(listing)
 
     .home-listing-attribute-titles.row
-      .col-4
-        %h4 field title 1
-      .col-4
-        %h4 field title 2
-      .col-4
-        %h4 field title 3
+      - @listing.custom_field_values.each do |custom_field_value|
+        - if custom_field_value.custom_field_id == 12 || custom_field_value.custom_field_id == 5
+          .col-4
+            %h4= custom_field_value.question.name(I18n.locale)
 
     .home-listing-attribute-values.row
-      .col-4 field val 1
-      .col-4 field val 2
-      .col-4 field val 3
+      - @listing.custom_field_values.each do |custom_field_value|
+        - if custom_field_value.custom_field_id == 12 || custom_field_value.custom_field_id == 5
+          .col-4= custom_field_value.text_value
 
     .home-list-author{:class => (listing.listing_images.size > 0 ? "home-list-author-with-listing-image" : "home-list-author-without-listing-image"), :style => "display:none;"}
       .home-list-avatar
