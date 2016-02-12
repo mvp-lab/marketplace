@@ -47,7 +47,7 @@ class HomepageController < ApplicationController
       when "grid"
         [:author, :listing_images]
       when "list"
-        [:author, :listing_images, :num_of_reviews]
+        [:author, :listing_images, :num_of_reviews, :custom_field_values]
       when "map"
         [:location]
       else

@@ -16,7 +16,8 @@ module ListingIndexViewUtils
     :quantity,
     :shape_name_tr_key,
     :listing_shape_id,
-    :icon_name)
+    :icon_name,
+		:custom_field_values)
 
   Author = Struct.new(
     :id,
@@ -32,6 +33,11 @@ module ListingIndexViewUtils
   ListingImage = Struct.new(
     :thumb,
     :small_3x2)
+
+  CustomFieldValues = Struct.new(
+    :custom_field_id,
+    :custom_field_name,
+		:custom_field_value)
 
   module_function
 
@@ -64,6 +70,14 @@ module ListingIndexViewUtils
           []
         end
 
+      custom_field_values =
+        if includes.include?(:custom_field_values)
+          l[:custom_field_values].map { |cfv|
+            CustomFieldValues.new(cfv[:custom_field_id], cfv[:custom_field_name], cfv[:custom_field_value]) }
+        else
+          []
+        end
+
       ListingItem.new(
         l[:id],
         l[:url],
@@ -80,7 +94,8 @@ module ListingIndexViewUtils
         l[:quantity],
         l[:shape_name_tr_key],
         l[:listing_shape_id],
-        l[:icon_name]
+        l[:icon_name],
+				custom_field_values
       )
     }
 

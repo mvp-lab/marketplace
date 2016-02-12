@@ -9,7 +9,8 @@ module ListingIndexService::Search
       listing_images: :listing_images,
       author: :author,
       num_of_reviews: {author: :received_testimonials},
-      location: :location
+      location: :location,
+			custom_field_values: :custom_field_values
     }
 
     def search(community_id:, search:, includes:)
@@ -203,6 +204,23 @@ module ListingIndexService::Search
                   thumb: li.image.url(:thumb),
                   small_3x2: li.image.url(:small_3x2),
                   medium: li.image.url(:medium)
+                }]
+              }.or_else([])
+          }
+        else
+          {}
+        end
+    end
+
+    def custom_field_values_hash(l, includes)
+        if includes.include?(:custom_field_values)
+          {
+            custom_field_values: Maybe(l.custom_field_values.first)
+              .map { |cfv|
+                [{
+                  custom_field_id: cfv.custom_field_id,
+                  custom_field_name: cfv.custom_field_name,
+                  custom_field_value: cfv.custom_field_value
                 }]
               }.or_else([])
           }
