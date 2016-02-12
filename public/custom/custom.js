@@ -18,7 +18,8 @@
 	
 	var loadHomePageEvents = function() {
 		var listingItems = $(".home-list-item");
-		var listingAttributes = [12, 7, 6, 5, 9];	// 12=company; 7=interest date; 6=direction; 5=starting price; 9=purchase price;
+		// 12=company; 7=interest date; 6=direction; 5=starting price; 9=purchase price; 3=product size
+		var listingAttributes = [12, 7, 6, 5, 9, 3];
 		var i = 0;
 		
 		// this method is NOT, i repeat, N O T ideal, it's such a performance burden to make many AJAX calls for each item
@@ -36,9 +37,14 @@
 			.done(function(response){
 				var listingDetails = $(response).find(".listing-details");
 				var html = "";
+				var listingDetail;
+				
 				if (listingDetails.length > 0) {
 					for (i = 0; i < listingAttributes.length; i++){
-						html += listingDetails.find("#listing-attribute-" + listingAttributes[i]).html();
+						listingDetail = listingDetails.find("#listing-attribute-" + listingAttributes[i]);
+						if (listingDetail.length > 0) {
+							html += listingDetails.find("#listing-attribute-" + listingAttributes[i]).html();
+						}
 					}
 					listingItemEl.append(html);
 				}
