@@ -15,32 +15,28 @@ Our marketplace is based on the Sharetribe platform.
 - [License](#mit-license)
 
 ## Installation
-
+* Good luck and God speed. You're gonna need it.
 
 ### Requirements
 
 Before you get started, the following needs to be installed:
   * **Ruby**. Version 2.1.2 is currently used and we don't guarantee everything works with other versions.
-    we are operational in 2.1.7 but YMMV
-     If you need multiple versions of Ruby, [RVM](https://rvm.io//) is recommended.
+    We are operational in 2.1.7 but YMMV
   * [**RubyGems**](http://rubygems.org/)
   * **Bundler**: `gem install bundler`
   * [**Git**](http://help.github.com/git-installation-redirect)
-  * **A database**. Only MySQL has been tested, so we give no guarantees that other databases (e.g. PostgreSQL) work. You can install MySQL Community Server two ways:
-    1. If you are on a Mac, use homebrew: `brew install mysql` (*highly* recommended). Also consider installing the [MySQL Preference Pane](https://dev.mysql.com/doc/refman/5.1/en/osx-installation-prefpane.html) to control MySQL startup and shutdown. It is packaged with the MySQL downloadable installer, but can be easily installed as a stand-alone.
-    2. Download a [MySQL installer from here](http://dev.mysql.com/downloads/mysql/)
-  * [**Sphinx**](http://pat.github.com/ts/en/installing_sphinx.html). Version 2.1.4 has been used successfully, but newer versions should work as well. Make sure to enable MySQL support. If you're using OS X and have Homebrew installed, install it with `brew install sphinx --with-mysql`
-  * [**Imagemagick**](http://www.imagemagick.org). If you're using OS X and have Homebrew installed, install it with `brew install imagemagick`
+  * **A database**. Only MySQL has been tested. Not worth screwing around. You can install MySQL Community Server two ways:
+     1. Download a [MySQL installer from here](http://dev.mysql.com/downloads/mysql/)
+  * [**Sphinx**](http://pat.github.com/ts/en/installing_sphinx.html). Version 2.1.4 has been used successfully, but newer versions should work as well. Make sure to enable MySQL support. 
+  * [**Imagemagick**](http://www.imagemagick.org).
+
 
 ### Setting up the development environment
+We had trouble with this, so we skipped this step. YOLO.
 
-1. Get the code. Cloning this git repo is probably easiest way:
+1. Don't get our code. Get it from the source ... 
 
-  ```bash
-  git clone git://github.com/sharetribe/sharetribe.git
-  ```
-
-1. Navigate to the Sharetribe project root directory.
+1. Navigate to the project root directory.
 1. Create a database.yml file by copying the example database configuration:
 
   ```bash
@@ -123,7 +119,7 @@ To update your local database schema to the newest version, run database migrati
 
 Tests are handled by [RSpec](http://rspec.info/) for unit tests and [Cucumber](https://cucumber.io/) for acceptance tests.
 
-1. Navigate to the root directory of the sharetribe project
+1. Navigate to the root directory of project
 1. Initialize your test database:
 
   ```bash
@@ -197,9 +193,9 @@ Before starting these steps, perform [steps 1-6 from above](#setting-up-the-deve
   ```
 
 
-The built-in WEBrick server (which was started in the last step above) should not be used in production due to performance reasons. A dedicated HTTP server such as [unicorn](http://unicorn.bogomips.org/) is recommended.
+The built-in WEBrick server (which was started in the last step above) should not be used in production due to performance reasons. A dedicated HTTP server such as [unicorn](http://unicorn.bogomips.org/) is recommended. But it is a b***h to set up.
 
-It is not recommended to serve static assets from a Rails server in production. Instead, you should use a CDN (Content Delivery Network) service, such as [Amazon CloudFront](https://aws.amazon.com/cloudfront/). To serve the assets from the CDN service, you need to change the `asset_host` configuration in the the `config/config.yml` file to point your CDN distribution.
+It is not recommended to serve static assets from a Rails server in production. But you can. And we do. Of course, instead, you should use a CDN (Content Delivery Network) service, such as [Amazon CloudFront](https://aws.amazon.com/cloudfront/). To serve the assets from the CDN service, you need to change the `asset_host` configuration in the the `config/config.yml` file to point your CDN distribution.
 
 #### Setting your domain
 
@@ -210,14 +206,6 @@ It is not recommended to serve static assets from a Rails server in production. 
 ### Advanced settings
 
 Default configuration settings are stored in `config/config.default.yml`. If you need to change these, we recommend creating a `config/config.yml` file to override these values. You can also set configuration values to environment variables.
-
-### Unofficial installation instructions
-
-Use these instructions to set up and deploy Sharetribe for production in different environments. They have been put together by the developer community, and are not officially maintained by the Sharetribe core team. The instructions might be somewhat out of date.
-
-If you have installation instructions that you would like to share, don't hesitate to [contact the team](https://www.flowdock.com/invitations/de227bdbe48d24c31a6b749933d3b4eca82e307c).
-
-- [Deploying Sharetribe to Heroku](https://gist.github.com/svallory/d08e9baa88e18d691605) by [svallory](https://github.com/svallory)
 
 
 ## Payments
@@ -234,7 +222,7 @@ See [release notes](RELEASE_NOTES.md) for information about what has changed and
 
 ## Technical roadmap
 
-
+* It's all in our heads.
 
 
 ## Known issues
