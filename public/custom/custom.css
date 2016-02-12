@@ -1,0 +1,28 @@
+/* \homepage\index.haml */
+.home-toolbar .home-toolbar-button-group {
+	visibility:hidden;
+}
+.marketplace-lander .marketplace-lander-content-title,
+.marketplace-lander p {
+	color:#000;
+	text-shadow:1px 1px #fff;
+}
+.marketplace-lander .marketplace-lander-content-title {
+	font-size:3em;
+}
+
+/* \feedbacks\new.haml */
+.company-contact {
+	margin:20px auto 20px;
+}
+.company-contact .wrapper {
+	max-width:28.5em;
+}
+
+/* \homepage\_list_item.haml */
+.home-list-item .home-list-price .home-list-price-value {
+	font-size:1.75em;
+}
+.home-list-item .home-list-author {
+	display:none;
+}
