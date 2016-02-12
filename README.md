@@ -1,6 +1,4 @@
-# Sharetribe
-
-[![Build Status](https://travis-ci.org/sharetribe/sharetribe.svg?branch=master)](https://travis-ci.org/sharetribe/sharetribe) [![Dependency Status](https://gemnasium.com/sharetribe/sharetribe.png)](https://gemnasium.com/sharetribe/sharetribe) [![Code Climate](https://codeclimate.com/github/sharetribe/sharetribe.png)](https://codeclimate.com/github/sharetribe/sharetribe) [![Coverage Status](https://coveralls.io/repos/sharetribe/sharetribe/badge.png)](https://coveralls.io/r/sharetribe/sharetribe)
+# 自由财市 Marketplace
 
 Our marketplace is based on the Sharetribe platform. 
 
@@ -18,12 +16,13 @@ Our marketplace is based on the Sharetribe platform.
 
 ## Installation
 
-Note: If you encounter problems with the installation, ask for help from the developer community in our [developer chatroom](https://www.flowdock.com/invitations/de227bdbe48d24c31a6b749933d3b4eca82e307c). When you join, please use threads. Instructions for this and other chat-related things can be found at [Flowdock's chat instructions](https://www.flowdock.com/help/chat).
 
 ### Requirements
 
 Before you get started, the following needs to be installed:
-  * **Ruby**. Version 2.1.2 is currently used and we don't guarantee everything works with other versions. If you need multiple versions of Ruby, [RVM](https://rvm.io//) is recommended.
+  * **Ruby**. Version 2.1.2 is currently used and we don't guarantee everything works with other versions.
+    we are operational in 2.1.7 but YMMV
+     If you need multiple versions of Ruby, [RVM](https://rvm.io//) is recommended.
   * [**RubyGems**](http://rubygems.org/)
   * **Bundler**: `gem install bundler`
   * [**Git**](http://help.github.com/git-installation-redirect)
@@ -235,19 +234,7 @@ See [release notes](RELEASE_NOTES.md) for information about what has changed and
 
 ## Technical roadmap
 
-For a better high-level understanding of what the Sharetribe core team is working on currently and what it plans to work on next, read the [technical roadmap](TECHNICAL_ROADMAP.md).
 
-
-## Contributing
-
-Would you like to make Sharetribe better? [Follow these steps](CONTRIBUTING.md).
-
-
-## Translation
-
-Sharetribe uses [WebTranslateIt (WTI)](https://webtranslateit.com/en) for translations. If you'd like to translate Sharetribe to your language or improve existing translations, please ask for a WTI invitation. To get an invite, send an email to [info@sharetribe.com](mailto:info@sharetribe.com) and mention that you would like to become a translator.
-
-All language additions and modifications (except for English) should be done through the WTI tool. We do not accept Pull Requests that add or modify languages (except English).
 
 
 ## Known issues
@@ -266,4 +253,4 @@ Browse open issues and submit new ones at http://github.com/sharetribe/sharetrib
 
 ## MIT License
 
-Sharetribe is open source under the MIT license. See [LICENSE](LICENSE) for details.
+Marketplace is open source under the MIT license. See [LICENSE](LICENSE) for details.
