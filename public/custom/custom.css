@@ -20,9 +20,25 @@
 }
 
 /* \homepage\_list_item.haml */
-.home-list-item .home-list-price .home-list-price-value {
-	font-size:1.75em;
+.home-list-item {
+	padding-bottom:65px;
+	margin-bottom:25px;
+}
+.home-list-item .col-12 {
+	margin-bottom:5px;
 }
 .home-list-item .home-list-author {
 	display:none;
+}
+.home-list-item .home-list-price .home-list-price-value {
+	font-size:1.75em;
+}
+
+@media (min-width:30em) {
+	.home-list-item {
+		height:auto;
+	}
+	.home-list-price-mobile {
+		top:0;
+	}
 }
