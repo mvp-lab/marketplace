@@ -24,6 +24,7 @@
 	height:auto;
 }
 .home-list-item .col-12 {
+	float:none;
 	margin-bottom:5px;
 }
 .home-list-item .home-list-author {
@@ -33,7 +34,7 @@
 	font-size:1.75em;
 }
 /* mobile only */
-@media (max-width:30em){
+@media (max-width:30em) {
 	.home-list-item {
 		padding-bottom:65px;
 		margin-bottom:25px;
@@ -43,5 +44,11 @@
 @media (min-width:30em) {
 	.home-list-price-mobile {
 		top:0;
+	}
+}
+/* large screen only */
+@media (min-width:63em) {
+	.home-list-title {
+		padding-bottom:1em;
 	}
 }
