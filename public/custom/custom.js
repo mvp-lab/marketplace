@@ -40,7 +40,7 @@
 			})
 			.fail(function(ex){
 				console.log("AJAX call failed on ", listingUrl, "; exception is:", ex);
-			}
+			});
 		})
 	};
 	
