@@ -21,10 +21,10 @@ Our marketplace is based on the Sharetribe platform.
 
 Before you get started, the following needs to be installed:
   * **Ruby**. Version 2.1.2 is currently used and we don't guarantee everything works with other versions.
-    We are operational in 2.1.7 but YMMV
-  * [**RubyGems**](http://rubygems.org/)
+    We are operational in 2.1.7 but YMMV ... 
+  * [**RubyGems**](http://rubygems.org/) 
   * **Bundler**: `gem install bundler`
-  * [**Git**](http://help.github.com/git-installation-redirect)
+  * [**Git**](http://help.github.com/git-installation-redirect) `yum -y install git`
   * **A database**. Only MySQL has been tested. Not worth screwing around. You can install MySQL Community Server two ways:
      1. Download a [MySQL installer from here](http://dev.mysql.com/downloads/mysql/)
   * [**Sphinx**](http://pat.github.com/ts/en/installing_sphinx.html). Version 2.1.4 has been used successfully, but newer versions should work as well. Make sure to enable MySQL support. 
@@ -195,7 +195,7 @@ Before starting these steps, perform [steps 1-6 from above](#setting-up-the-deve
 
 The built-in WEBrick server (which was started in the last step above) should not be used in production due to performance reasons. A dedicated HTTP server such as [unicorn](http://unicorn.bogomips.org/) is recommended. But it is a b***h to set up.
 
-It is not recommended to serve static assets from a Rails server in production. But you can. And we do. Of course, instead, you should use a CDN (Content Delivery Network) service, such as [Amazon CloudFront](https://aws.amazon.com/cloudfront/). To serve the assets from the CDN service, you need to change the `asset_host` configuration in the the `config/config.yml` file to point your CDN distribution.
+It is not recommended to serve static assets from a Rails server in production. But you can. And we do. If you really, really insist, instead, you could pay through the nose and use a CDN (Content Delivery Network) service, such as [Amazon CloudFront](https://aws.amazon.com/cloudfront/). But we're too poor. To serve the assets from the CDN service, you need to change the `asset_host` configuration in the the `config/config.yml` file to point your CDN distribution.
 
 #### Setting your domain
 
@@ -227,7 +227,7 @@ See [release notes](RELEASE_NOTES.md) for information about what has changed and
 
 ## Known issues
 
-Browse open issues and submit new ones at http://github.com/sharetribe/sharetribe/issues.
+Browse open issues if you like, but please don't submit new ones at https://github.com/ziyoucaishi/marketplace/issues.
 
 
 ## Developer documentation
