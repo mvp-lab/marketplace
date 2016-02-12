@@ -72,8 +72,9 @@ module ListingIndexViewUtils
 
       custom_field_values =
         if includes.include?(:custom_field_values)
-          l[:custom_field_values].map { |cfv|
-            CustomFieldValues.new(cfv[:custom_field_id], cfv[:custom_field_name], cfv[:custom_field_value]) }
+          []
+          #l[:custom_field_values].map { |cfv|
+            #CustomFieldValues.new(cfv[:custom_field_id], cfv[:custom_field_name], cfv[:custom_field_value]) }
         else
           []
         end
