@@ -83,7 +83,7 @@
             = render :partial => "googlemap", :locals => { :listing => @listing}
             = render :partial => "origin", :locals => { :origin_loc => @listing.origin_loc }
 
-  .col-8
+  .listing-details.col-8
     .row
       .col-12
         - with_image_frame(@listing) do |reason, listing_images|
@@ -119,7 +119,7 @@
                         = t(".no_description")
 
     - @listing.custom_field_values.each do |custom_field_value|
-      .row
+      .row{:id => "listing-attribute-#{custom_field_value.custom_field_id}", "data-field-id" => custom_field_value.custom_field_id}
         .col-12
           - custom_field_value.with_type do |question_type|
             = render :partial => "listings/custom_field_partials/#{question_type}", :locals => { :custom_field_value => custom_field_value }
