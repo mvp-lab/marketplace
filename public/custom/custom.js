@@ -17,7 +17,7 @@
 	};
 	
 	var loadHomePageEvents = function() {
-		var listingItems = $(".home-listing-item");
+		var listingItems = $(".home-list-item");
 		
 		// this method is NOT, i repeat, N O T ideal, it's such a performance burden to make many AJAX calls for each item
 		// this is the result of bad time crunching
