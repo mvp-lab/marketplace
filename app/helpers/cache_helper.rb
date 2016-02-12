@@ -70,7 +70,7 @@ module CacheHelper
 
   def frontpage_fragment_cache(type, listing, &block)
     listings_i18n_digest = Rails.cache.fetch(["listings_i18n", @current_community, I18n.locale], :expires_in => 5.minutes) { Digest::MD5.hexdigest I18n.t(["listings"]).to_s }
-    cache([type, listings_i18n_digest, @current_community, listing, listing.author, MoneyRails::Configuration.no_cents_if_whole], :expires_in => 15.minutes, &block)
+    cache([type, listings_i18n_digest, @current_community, listing, listing.author, MoneyRails::Configuration.no_cents_if_whole], :expires_in => 5.minutes, &block)
   end
 
   private
