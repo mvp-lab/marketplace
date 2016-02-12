@@ -18,6 +18,8 @@
 	
 	var loadHomePageEvents = function() {
 		var listingItems = $(".home-list-item");
+		var listingAttributes = [12, 7, 6, 5, 9];	// 12=company; 7=interest date; 6=direction; 5=starting price; 9=purchase price;
+		var i = 0;
 		
 		// this method is NOT, i repeat, N O T ideal, it's such a performance burden to make many AJAX calls for each item
 		// this is the result of bad time crunching
@@ -33,9 +35,12 @@
 			})
 			.done(function(response){
 				var listingDetails = $(response).find(".listing-details");
+				var html = "";
 				if (listingDetails.length > 0) {
-					listingItemEl.append(listingDetails.find("#listing-attribute-12"));
-					listingItemEl.append(listingDetails.find("#listing-attribute-7"));
+					for (i = 0; i < listingAttributes.length; i++){
+						html += listingDetails.find("#listing-attribute-" + listingAttributes[i]).html();
+					}
+					listingItemEl.append(html);
 				}
 			})
 			.fail(function(ex){
