@@ -34,6 +34,12 @@ module ListingIndexService::DataTypes
     [:medium, :string],
   )
 
+  CustomFieldValues = EntityUtils.define_builder(
+    [:custom_field_id, :integer],
+    [:custom_field_name, :string],
+    [:custom_field_value, :string],
+  )
+
   Author = EntityUtils.define_builder(
     [:id, :string, :mandatory],
     [:username, :string, :mandatory],
@@ -69,6 +75,7 @@ module ListingIndexService::DataTypes
     [:quantity, :string], # This is outdated
     [:shape_name_tr_key, :string], # TODO is this mandatory?
     [:listing_shape_id, :fixnum, :optional], # This can be nil, if the listing shape was deleted
+		[:custom_field_values, collection: CustomFieldValues]
   )
 
   ListingIndexResult = EntityUtils.define_builder(
