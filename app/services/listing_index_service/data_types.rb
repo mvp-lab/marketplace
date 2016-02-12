@@ -35,7 +35,7 @@ module ListingIndexService::DataTypes
   )
 
   CustomFieldValues = EntityUtils.define_builder(
-    [:custom_field_id, :integer],
+    [:custom_field_id, :fixnum],
     [:custom_field_name, :string],
     [:custom_field_value, :string],
   )
