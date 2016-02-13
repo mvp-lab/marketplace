@@ -20,8 +20,7 @@ Our marketplace is based on the Sharetribe platform.
 ### Requirements
 
 Before you get started, the following needs to be installed:
-  * **Ruby**. Version 2.1.2 is currently used and we don't guarantee everything works with other versions.
-    We are operational in 2.1.7 but YMMV ... 
+  * **Ruby**. Version 2.1.2 is currently used and we don't guarantee everything works with other versions. We are operational in 2.1.7 but YMMV ... 
   * [**RubyGems**](http://rubygems.org/) 
   * **Bundler**: `gem install bundler`
   * [**Git**](http://help.github.com/git-installation-redirect) `yum -y install git`
@@ -37,7 +36,7 @@ We had trouble with this, so we skipped this step. YOLO.
 1. Don't get our code. Get it from the source ... 
 
 1. Navigate to the project root directory.
-1. Create a database.yml file by copying the example database configuration:
+1. Create a `database.yml` file by copying the example database configuration:
 
   ```bash
   cp config/database.example.yml config/database.yml
@@ -69,29 +68,6 @@ We had trouble with this, so we skipped this step. YOLO.
   bundle exec rake ts:start
   ```
 
-1. Use [Mailcatcher](http://mailcatcher.me) to receive sent emails locally:
-    1. Install Mailcatcher:
-
-        ```bash
-        gem install mailcatcher
-        ```
-
-    1. Start it:
-
-        ```bash
-        mailcatcher
-        ```
-
-    1. Create a `config/config.yml` file and add the following lines to it:
-
-        ```yml
-        development:
-          mail_delivery_method: smtp
-          smtp_email_address: "localhost"
-          smtp_email_port: 1025
-        ```
-
-    1. Open `http://localhost:1080` in your browser
 1. Invoke the delayed job worker:
 
   ```bash
@@ -105,19 +81,13 @@ We had trouble with this, so we skipped this step. YOLO.
   ```
 
 
-Congratulations! Sharetribe should now be up and running for development purposes. Open a browser and go to the server URL (e.g. http://lvh.me:3000). Fill in the form to create a new marketplace and admin user. You should be now able to access your marketplace and modify it from the admin area.
+Congratulations! If you're really lucky, it might be up and running for development purposes. Open a browser and go to the server URL (e.g. http://lvh.me:3000). Fill in the form to create a new marketplace and admin user. You should be now able to access your marketplace and modify it from the admin area.
 
-### Database migrations
-
-To update your local database schema to the newest version, run database migrations with:
-
-  ```bash
-  bundle exec rake db:migrate
-  ```
 
 ### Running tests
 
 Tests are handled by [RSpec](http://rspec.info/) for unit tests and [Cucumber](https://cucumber.io/) for acceptance tests.
+We've never tried this ...
 
 1. Navigate to the root directory of project
 1. Initialize your test database:
@@ -195,7 +165,7 @@ Before starting these steps, perform [steps 1-6 from above](#setting-up-the-deve
 
 The built-in WEBrick server (which was started in the last step above) should not be used in production due to performance reasons. A dedicated HTTP server such as [unicorn](http://unicorn.bogomips.org/) is recommended. But it is a b***h to set up.
 
-It is not recommended to serve static assets from a Rails server in production. But you can. And we do. If you really, really insist, instead, you could pay through the nose and use a CDN (Content Delivery Network) service, such as [Amazon CloudFront](https://aws.amazon.com/cloudfront/). But we're too poor. To serve the assets from the CDN service, you need to change the `asset_host` configuration in the the `config/config.yml` file to point your CDN distribution.
+It is not recommended to serve static assets from a Rails server in production. But you can. And we do. If you're really cool, you could pay through the nose and use a CDN (Content Delivery Network) service, such as [Amazon CloudFront](https://aws.amazon.com/cloudfront/). But we're poor. To serve the assets from the CDN service, you need to change the `asset_host` configuration in the the `config/config.yml` file to point your CDN distribution.
 
 #### Setting your domain
 
