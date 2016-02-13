@@ -42,8 +42,19 @@ We had trouble with this, so we skipped this step. YOLO.
   cp config/database.example.yml config/database.yml
   ```
 
-1. Create the required databases with [these commands](https://gist.github.com/804314).
-1. Add your database configuration details to `config/database.yml`. You will probably only need to fill in the password for the database(s).
+1. Create the required databases with:
+
+  ```
+  CREATE DATABASE sharetribe_test CHARACTER SET utf8 COLLATE utf8_general_ci;
+  CREATE DATABASE sharetribe_development CHARACTER SET utf8 COLLATE utf8_general_ci;
+  CREATE DATABASE sharetribe_production CHARACTER SET utf8 COLLATE utf8_general_ci;
+  
+  GRANT all privileges ON sharetribe_development.* TO 'sharetribe'@'localhost' IDENTIFIED BY 'my_favorite_pony';
+  GRANT all privileges ON sharetribe_production.* TO 'sharetribe'@'localhost' IDENTIFIED BY 'my_favorite_pony';
+  GRANT all privileges ON sharetribe_test.* TO 'sharetribe'@'localhost' IDENTIFIED BY 'my_favorite_pony';
+  ```
+
+1. Add your database configuration details to `config/database.yml`. (i.e. username/password)
 1. Install the required gems by running the following command in the project root directory:
 
   ```bash
