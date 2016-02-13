@@ -1,16 +1,31 @@
+function storageAvailable(type) {
+	try {
+		var storage = window[type],
+			x = '__storage_test__';
+		storage.setItem(x, x);
+		storage.removeItem(x);
+		return true;
+	}
+	catch(e) {
+		return false;
+	}
+}
+
+var hasLocalStorage = storageAvailable("localStorage");
+
 (function($,z) {
 	z.pageName = "";
 	z.PAGE_NAMES = {
 		HOME : "home",
 		UNKNOWN : ""
-	}
+	};
 	
 	var getPageName = function() {
 		if ($(".home-listings").length > 0) {
 			return z.PAGE_NAMES.HOME;
 		}
 		return z.PAGE_NAMES.UNKNOWN;
-	}
+	};
 	
 	var loadGlobalEvents = function() {
 		// to be implemented
@@ -25,10 +40,19 @@
 		// this method is NOT, i repeat, N O T ideal, it's such a performance burden to make many AJAX calls for each item
 		// this is the result of bad time crunching
 		// will HAVE to fix this later, HAVE to, preferably make our own API for this
+		// OK, 4 hours after the above comments, I've added local storage caching, makes it a bit better
 		listingItems.each(function(index, listingItem){
 			var listingItemEl = $(listingItem);
 			var listingId = listingItemEl.attr("data-listing-id");
 			var listingUrl = "/listings/" + listingId;
+			
+			if (hasLocalStorage){
+				if (window.localStorage[listingUrl]) {
+					listingItemEl.append(window.localStorage[listingUrl]);
+					return true; // proceed to next element, skip AJAX
+				}
+			}
+			
 			$.ajax({
 				url: listingUrl,
 				dataType: "html",
@@ -47,6 +71,10 @@
 						}
 					}
 					listingItemEl.append(html);
+					
+					if (hasLocalStorage) {
+						window.localStorage[listingUrl] = html;
+					}
 				}
 			})
 			.fail(function(ex){
@@ -68,4 +96,4 @@
 		z.pageName = getPageName();
 		loadPageEvents(z.pageName);
 	});
-})(jQuery, zycs)
+})(jQuery, zycs);
