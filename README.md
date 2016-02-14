@@ -1,12 +1,7 @@
-# Sharetribe
+# 自由财市 Marketplace
 
-[![Build Status](https://travis-ci.org/sharetribe/sharetribe.svg?branch=master)](https://travis-ci.org/sharetribe/sharetribe) [![Dependency Status](https://gemnasium.com/sharetribe/sharetribe.png)](https://gemnasium.com/sharetribe/sharetribe) [![Code Climate](https://codeclimate.com/github/sharetribe/sharetribe.png)](https://codeclimate.com/github/sharetribe/sharetribe) [![Coverage Status](https://coveralls.io/repos/sharetribe/sharetribe/badge.png)](https://coveralls.io/r/sharetribe/sharetribe)
+Our marketplace is based on the Sharetribe platform. 
 
-Sharetribe is an open source platform to create your own peer-to-peer marketplace.
-
-Would you like to set up your marketplace in one minute without touching code? [Head to Sharetribe.com](https://www.sharetribe.com).
-
-Want to get in touch? Email [info@sharetribe.com](mailto:info@sharetribe.com)
 
 ### Contents
 - [Installation](#installation)
@@ -20,39 +15,46 @@ Want to get in touch? Email [info@sharetribe.com](mailto:info@sharetribe.com)
 - [License](#mit-license)
 
 ## Installation
-
-Note: If you encounter problems with the installation, ask for help from the developer community in our [developer chatroom](https://www.flowdock.com/invitations/de227bdbe48d24c31a6b749933d3b4eca82e307c). When you join, please use threads. Instructions for this and other chat-related things can be found at [Flowdock's chat instructions](https://www.flowdock.com/help/chat).
+* Good luck and God speed. You're gonna need it.
 
 ### Requirements
 
 Before you get started, the following needs to be installed:
-  * **Ruby**. Version 2.1.2 is currently used and we don't guarantee everything works with other versions. If you need multiple versions of Ruby, [RVM](https://rvm.io//) is recommended.
-  * [**RubyGems**](http://rubygems.org/)
+  * **Ruby**. Version 2.1.2 is currently used and we don't guarantee everything works with other versions. We are operational in 2.1.7 but YMMV ... 
+  * [**RubyGems**](http://rubygems.org/) 
   * **Bundler**: `gem install bundler`
-  * [**Git**](http://help.github.com/git-installation-redirect)
-  * **A database**. Only MySQL has been tested, so we give no guarantees that other databases (e.g. PostgreSQL) work. You can install MySQL Community Server two ways:
-    1. If you are on a Mac, use homebrew: `brew install mysql` (*highly* recommended). Also consider installing the [MySQL Preference Pane](https://dev.mysql.com/doc/refman/5.1/en/osx-installation-prefpane.html) to control MySQL startup and shutdown. It is packaged with the MySQL downloadable installer, but can be easily installed as a stand-alone.
-    2. Download a [MySQL installer from here](http://dev.mysql.com/downloads/mysql/)
-  * [**Sphinx**](http://pat.github.com/ts/en/installing_sphinx.html). Version 2.1.4 has been used successfully, but newer versions should work as well. Make sure to enable MySQL support. If you're using OS X and have Homebrew installed, install it with `brew install sphinx --with-mysql`
-  * [**Imagemagick**](http://www.imagemagick.org). If you're using OS X and have Homebrew installed, install it with `brew install imagemagick`
+  * [**Git**](http://help.github.com/git-installation-redirect) `yum -y install git`
+  * **A database**. Only MySQL has been tested. Not worth screwing around. You can install MySQL Community Server two ways:
+     1. Download a [MySQL installer from here](http://dev.mysql.com/downloads/mysql/)
+  * [**Sphinx**](http://pat.github.com/ts/en/installing_sphinx.html). Version 2.1.4 has been used successfully, but newer versions should work as well. Make sure to enable MySQL support. 
+  * [**Imagemagick**](http://www.imagemagick.org).
+
 
 ### Setting up the development environment
+We had trouble with this, so we skipped this step. YOLO.
 
-1. Get the code. Cloning this git repo is probably easiest way:
+1. Don't get our code. Get it from the source ... 
 
-  ```bash
-  git clone git://github.com/sharetribe/sharetribe.git
-  ```
-
-1. Navigate to the Sharetribe project root directory.
-1. Create a database.yml file by copying the example database configuration:
+1. Navigate to the project root directory.
+1. Create a `database.yml` file by copying the example database configuration:
 
   ```bash
   cp config/database.example.yml config/database.yml
   ```
 
-1. Create the required databases with [these commands](https://gist.github.com/804314).
-1. Add your database configuration details to `config/database.yml`. You will probably only need to fill in the password for the database(s).
+1. Create the required databases with:
+
+  ```
+  CREATE DATABASE sharetribe_test CHARACTER SET utf8 COLLATE utf8_general_ci;
+  CREATE DATABASE sharetribe_development CHARACTER SET utf8 COLLATE utf8_general_ci;
+  CREATE DATABASE sharetribe_production CHARACTER SET utf8 COLLATE utf8_general_ci;
+  
+  GRANT all privileges ON sharetribe_development.* TO 'sharetribe'@'localhost' IDENTIFIED BY 'my_favorite_pony';
+  GRANT all privileges ON sharetribe_production.* TO 'sharetribe'@'localhost' IDENTIFIED BY 'my_favorite_pony';
+  GRANT all privileges ON sharetribe_test.* TO 'sharetribe'@'localhost' IDENTIFIED BY 'my_favorite_pony';
+  ```
+
+1. Add your database configuration details to `config/database.yml`. (i.e. username/password)
 1. Install the required gems by running the following command in the project root directory:
 
   ```bash
@@ -77,29 +79,6 @@ Before you get started, the following needs to be installed:
   bundle exec rake ts:start
   ```
 
-1. Use [Mailcatcher](http://mailcatcher.me) to receive sent emails locally:
-    1. Install Mailcatcher:
-
-        ```bash
-        gem install mailcatcher
-        ```
-
-    1. Start it:
-
-        ```bash
-        mailcatcher
-        ```
-
-    1. Create a `config/config.yml` file and add the following lines to it:
-
-        ```yml
-        development:
-          mail_delivery_method: smtp
-          smtp_email_address: "localhost"
-          smtp_email_port: 1025
-        ```
-
-    1. Open `http://localhost:1080` in your browser
 1. Invoke the delayed job worker:
 
   ```bash
@@ -113,21 +92,15 @@ Before you get started, the following needs to be installed:
   ```
 
 
-Congratulations! Sharetribe should now be up and running for development purposes. Open a browser and go to the server URL (e.g. http://lvh.me:3000). Fill in the form to create a new marketplace and admin user. You should be now able to access your marketplace and modify it from the admin area.
+Congratulations! If you're really lucky, it might be up and running for development purposes. Open a browser and go to the server URL (e.g. http://lvh.me:3000). Fill in the form to create a new marketplace and admin user. You should be now able to access your marketplace and modify it from the admin area.
 
-### Database migrations
-
-To update your local database schema to the newest version, run database migrations with:
-
-  ```bash
-  bundle exec rake db:migrate
-  ```
 
 ### Running tests
 
 Tests are handled by [RSpec](http://rspec.info/) for unit tests and [Cucumber](https://cucumber.io/) for acceptance tests.
+We've never tried this ...
 
-1. Navigate to the root directory of the sharetribe project
+1. Navigate to the root directory of project
 1. Initialize your test database:
 
   ```bash
@@ -201,9 +174,9 @@ Before starting these steps, perform [steps 1-6 from above](#setting-up-the-deve
   ```
 
 
-The built-in WEBrick server (which was started in the last step above) should not be used in production due to performance reasons. A dedicated HTTP server such as [unicorn](http://unicorn.bogomips.org/) is recommended.
+The built-in WEBrick server (which was started in the last step above) should not be used in production due to performance reasons. A dedicated HTTP server such as [unicorn](http://unicorn.bogomips.org/) is recommended. But it is a b***h to set up.
 
-It is not recommended to serve static assets from a Rails server in production. Instead, you should use a CDN (Content Delivery Network) service, such as [Amazon CloudFront](https://aws.amazon.com/cloudfront/). To serve the assets from the CDN service, you need to change the `asset_host` configuration in the the `config/config.yml` file to point your CDN distribution.
+It is not recommended to serve static assets from a Rails server in production. But you can. And we do. If you're really cool, you could pay through the nose and use a CDN (Content Delivery Network) service, such as [Amazon CloudFront](https://aws.amazon.com/cloudfront/). But we're poor. To serve the assets from the CDN service, you need to change the `asset_host` configuration in the the `config/config.yml` file to point your CDN distribution.
 
 #### Setting your domain
 
@@ -214,14 +187,6 @@ It is not recommended to serve static assets from a Rails server in production. 
 ### Advanced settings
 
 Default configuration settings are stored in `config/config.default.yml`. If you need to change these, we recommend creating a `config/config.yml` file to override these values. You can also set configuration values to environment variables.
-
-### Unofficial installation instructions
-
-Use these instructions to set up and deploy Sharetribe for production in different environments. They have been put together by the developer community, and are not officially maintained by the Sharetribe core team. The instructions might be somewhat out of date.
-
-If you have installation instructions that you would like to share, don't hesitate to [contact the team](https://www.flowdock.com/invitations/de227bdbe48d24c31a6b749933d3b4eca82e307c).
-
-- [Deploying Sharetribe to Heroku](https://gist.github.com/svallory/d08e9baa88e18d691605) by [svallory](https://github.com/svallory)
 
 
 ## Payments
@@ -238,24 +203,12 @@ See [release notes](RELEASE_NOTES.md) for information about what has changed and
 
 ## Technical roadmap
 
-For a better high-level understanding of what the Sharetribe core team is working on currently and what it plans to work on next, read the [technical roadmap](TECHNICAL_ROADMAP.md).
-
-
-## Contributing
-
-Would you like to make Sharetribe better? [Follow these steps](CONTRIBUTING.md).
-
-
-## Translation
-
-Sharetribe uses [WebTranslateIt (WTI)](https://webtranslateit.com/en) for translations. If you'd like to translate Sharetribe to your language or improve existing translations, please ask for a WTI invitation. To get an invite, send an email to [info@sharetribe.com](mailto:info@sharetribe.com) and mention that you would like to become a translator.
-
-All language additions and modifications (except for English) should be done through the WTI tool. We do not accept Pull Requests that add or modify languages (except English).
+* It's all in our heads.
 
 
 ## Known issues
 
-Browse open issues and submit new ones at http://github.com/sharetribe/sharetribe/issues.
+Browse open issues if you like, but please don't submit new ones at https://github.com/ziyoucaishi/marketplace/issues.
 
 
 ## Developer documentation
@@ -269,4 +222,4 @@ Browse open issues and submit new ones at http://github.com/sharetribe/sharetrib
 
 ## MIT License
 
-Sharetribe is open source under the MIT license. See [LICENSE](LICENSE) for details.
+Marketplace is open source under the MIT license. See [LICENSE](LICENSE) for details.
