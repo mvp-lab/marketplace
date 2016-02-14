@@ -60,8 +60,7 @@
                 %a#listing-contact{href: contact_to_listing_path(:listing_id => @listing.id.to_s), :class => "listing-author-contact-button"}
                   .content
                     = t(".contact")
-            .listing-author-desc
-              
+            .listing-author-desc= @listing.author.description
 
     - if @current_community.testimonials_in_use && received_testimonials.size > 0
       .row-with-divider.listing-author-activity

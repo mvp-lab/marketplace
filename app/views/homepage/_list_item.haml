@@ -53,7 +53,8 @@
           = humanized_money_with_symbol(listing.price).upcase
         - price_text = nil
         - if listing.quantity.present?
-          - price_text = t("listings.form.price.per") + " " + listing.quantity
+          -# price_text = t("listings.form.price.per") + " " + listing.quantity
+          - price_text = listing.quantity
         - elsif listing.unit_type
           - price_text = price_quantity_per_unit(listing)
         - if price_text.present?
