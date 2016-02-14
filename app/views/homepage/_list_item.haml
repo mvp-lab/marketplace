@@ -1,5 +1,5 @@
 - frontpage_fragment_cache("list_item", listing) do
-  .home-list-item
+  .home-list-item{:id => "listing-#{listing.id}", "data-listing-id" => listing.id, "data-category-id" => listing.category_id}
     - if listing.listing_images.size > 0
       = link_to listing_path(listing.url), :class => "home-list-image-container-desktop" do
         = image_tag listing.listing_images.first[:small_3x2], {:alt => listed_listing_title(listing), :class => "home-list-image"}
@@ -9,7 +9,7 @@
     .home-list-details-right
       .home-list-price
         - if listing.price
-          .home-list-price-value
+          .home-list-price-value{:style => "font-size:1.75em;"}
             = humanized_money_with_symbol(listing.price).upcase
           - price_text = nil
           - if listing.quantity.present?
@@ -33,7 +33,8 @@
               = icon_tag(listing.icon_name, ["icon-fix"])
               = shape_name(listing)
 
-    .home-list-author{:class => (listing.listing_images.size > 0 ? "home-list-author-with-listing-image" : "home-list-author-without-listing-image")}
+
+    .home-list-author{:class => (listing.listing_images.size > 0 ? "home-list-author-with-listing-image" : "home-list-author-without-listing-image"), :style => "display:none;"}
       .home-list-avatar
         = link_to(person_path(id: listing.author.username), :class => "home-fluid-thumbnail-grid-author-avatar-image") do
           = image_tag(listing.author.avatar.thumb || missing_avatar(:thumb))
@@ -52,7 +53,8 @@
           = humanized_money_with_symbol(listing.price).upcase
         - price_text = nil
         - if listing.quantity.present?
-          - price_text = t("listings.form.price.per") + " " + listing.quantity
+          -# price_text = t("listings.form.price.per") + " " + listing.quantity
+          - price_text = listing.quantity
         - elsif listing.unit_type
           - price_text = price_quantity_per_unit(listing)
         - if price_text.present?

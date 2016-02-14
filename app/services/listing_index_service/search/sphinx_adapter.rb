@@ -171,6 +171,7 @@ module ListingIndexService::Search
               username: l.author.username,
               first_name: l.author.given_name,
               last_name: l.author.family_name,
+              description: l.author.description,
               organization_name: l.author.organization_name,
               is_organization: l.author.is_organization,
               avatar: {

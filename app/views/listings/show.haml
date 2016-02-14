@@ -30,8 +30,61 @@
     %img.listing-image-thumbnail{src: "${url}"}
     .fade
 
-.row
-  .col-8
+.row.listing-details
+  %aside.col-4
+    - if @listing.price
+      .row
+        .col-12
+          .listing-price
+            %span.listing-price-amount
+              = humanized_money_with_symbol(@listing.price).upcase
+            - with_quantity_and_vat_text(@current_community, @listing) do |text|
+              %span.listing-price-quantity
+                = text
+
+    .row-with-divider
+      .col-12
+        #listing-message-links
+          = render :partial => "listing_actions", locals: { form_path: form_path, payment_gateway: payment_gateway, delivery_opts: delivery_opts, process: process, listing_unit_type: listing_unit_type, country_code: country_code }
+
+    .row-with-divider
+      .col-12
+        .listing-author
+          .listing-author-avatar
+            = medium_avatar_thumb(@listing.author, {:class => "listing-author-avatar-image"})
+          .listing-author-details
+            .listing-author-name
+              = link_to @listing.author.name(@current_community), @listing.author, :id => "listing-author-link", :class => "listing-author-name-link", :title => "#{@listing.author.name(@current_community)}"
+            - if @listing.author != @current_user
+              .listing-author-contact
+                %a#listing-contact{href: contact_to_listing_path(:listing_id => @listing.id.to_s), :class => "listing-author-contact-button"}
+                  .content
+                    = t(".contact")
+            .listing-author-desc= @listing.author.description
+
+    - if @current_community.testimonials_in_use && received_testimonials.size > 0
+      .row-with-divider.listing-author-activity
+        .col-12
+          %i.listing-author-activity-icon{:class => icon_class("testimonial")}
+          .listing-author-activity-item
+            .listing-author-activity-value
+              - if received_testimonials.size > 0
+                = feedback_positive_percentage.to_s + "%"
+                = t("people.show.positive")
+                = "(#{received_positive_testimonials.size}/#{received_testimonials.size})"
+              - else
+                = t(".no_reviews")
+            .listing-author-activity-description
+              = t(".feedback")
+
+    - if @listing.origin_loc && @listing.origin_loc.address != ""
+      .row
+        .col-12
+          #googlemap
+            = render :partial => "googlemap", :locals => { :listing => @listing}
+            = render :partial => "origin", :locals => { :origin_loc => @listing.origin_loc }
+
+  .listing-details.col-8
     .row
       .col-12
         - with_image_frame(@listing) do |reason, listing_images|
@@ -66,17 +119,18 @@
                       - else
                         = t(".no_description")
 
-    .row
-      .col-12
-        - if @listing.description && !@listing.description.blank?
-          - text_with_line_breaks do
-            = @listing.description
-
     - @listing.custom_field_values.each do |custom_field_value|
-      .row
+      .row{:id => "listing-attribute-#{custom_field_value.custom_field_id}", "data-field-id" => custom_field_value.custom_field_id}
         .col-12
           - custom_field_value.with_type do |question_type|
             = render :partial => "listings/custom_field_partials/#{question_type}", :locals => { :custom_field_value => custom_field_value }
+
+    .row
+      .col-12
+        - if @listing.description && !@listing.description.blank?
+          %b= "#{t('listings.form.description.detailed_description')}:"
+          - text_with_line_breaks do
+            = @listing.description
 
     - if @current_community.show_listing_publishing_date?
       .row
@@ -114,55 +168,3 @@
             = render :partial => "comment", :collection => @listing.comments
           #comment-form
             = render :partial => "comment_form"
-
-  %aside.col-4
-    - if @listing.price
-      .row
-        .col-12
-          .listing-price
-            %span.listing-price-amount
-              = humanized_money_with_symbol(@listing.price).upcase
-            - with_quantity_and_vat_text(@current_community, @listing) do |text|
-              %span.listing-price-quantity
-                = text
-
-    .row-with-divider
-      .col-12
-        #listing-message-links
-          = render :partial => "listing_actions", locals: { form_path: form_path, payment_gateway: payment_gateway, delivery_opts: delivery_opts, process: process, listing_unit_type: listing_unit_type, country_code: country_code }
-
-    .row-with-divider
-      .col-12
-        .listing-author
-          .listing-author-avatar
-            = medium_avatar_thumb(@listing.author, {:class => "listing-author-avatar-image"})
-          .listing-author-details
-            .listing-author-name
-              = link_to @listing.author.name(@current_community), @listing.author, :id => "listing-author-link", :class => "listing-author-name-link", :title => "#{@listing.author.name(@current_community)}"
-            - if @listing.author != @current_user
-              .listing-author-contact
-                %a#listing-contact{href: contact_to_listing_path(:listing_id => @listing.id.to_s), :class => "listing-author-contact-button"}
-                  .content
-                    = t(".contact")
-
-    - if @current_community.testimonials_in_use && received_testimonials.size > 0
-      .row-with-divider.listing-author-activity
-        .col-12
-          %i.listing-author-activity-icon{:class => icon_class("testimonial")}
-          .listing-author-activity-item
-            .listing-author-activity-value
-              - if received_testimonials.size > 0
-                = feedback_positive_percentage.to_s + "%"
-                = t("people.show.positive")
-                = "(#{received_positive_testimonials.size}/#{received_testimonials.size})"
-              - else
-                = t(".no_reviews")
-            .listing-author-activity-description
-              = t(".feedback")
-
-    - if @listing.origin_loc && @listing.origin_loc.address != ""
-      .row
-        .col-12
-          #googlemap
-            = render :partial => "googlemap", :locals => { :listing => @listing}
-            = render :partial => "origin", :locals => { :origin_loc => @listing.origin_loc }

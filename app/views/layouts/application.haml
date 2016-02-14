@@ -51,7 +51,7 @@
   - else
     = content_for(:page_content)
 
-  = render :partial => "layouts/google_analytics_script"
+  -#= render :partial => "layouts/google_analytics_script"
 
   -# Most of the JavaScript should be for performance reasons at the end of the body
 
@@ -65,7 +65,7 @@
   :javascript
     window.ST.jsonTranslations = #{JSONTranslations.get(I18n.locale)}
 
-  - if @analytics_event
+  -# if @analytics_event
     :javascript
       report_analytics_event(#{@analytics_event});
 
@@ -88,3 +88,5 @@
     $(document).ready(function() { initialize_defaults("#{I18n.locale}"); #{yield :javascript} });
 
   = render :partial => "layouts/noscript"
+
+  <script src="/custom/custom.js"></script>

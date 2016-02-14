@@ -39,6 +39,7 @@ module ListingIndexService::DataTypes
     [:username, :string, :mandatory],
     [:first_name, :string, :optional], # For organization, first_name is optional
     [:last_name, :string, :optional], # For organization, last_name is optional
+    [:description, :string, :optional],
     [:organization_name, :string],
     [:is_organization, :bool, default: false],
     [:avatar, entity: AvatarImage],
