@@ -1,4 +1,7 @@
 /* \homepage\index.haml */
+.lander-content .search-form {
+	display:none;
+}
 .home-toolbar .home-toolbar-button-group {
 	visibility:hidden;
 }
