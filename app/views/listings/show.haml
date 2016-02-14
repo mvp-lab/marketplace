@@ -30,7 +30,7 @@
     %img.listing-image-thumbnail{src: "${url}"}
     .fade
 
-.row
+.row.listing-details
   %aside.col-4
     - if @listing.price
       .row
@@ -60,6 +60,8 @@
                 %a#listing-contact{href: contact_to_listing_path(:listing_id => @listing.id.to_s), :class => "listing-author-contact-button"}
                   .content
                     = t(".contact")
+            .listing-author-desc
+              
 
     - if @current_community.testimonials_in_use && received_testimonials.size > 0
       .row-with-divider.listing-author-activity
